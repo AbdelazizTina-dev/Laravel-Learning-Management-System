@@ -27,7 +27,11 @@
 
               <tr>
                 <td></td>
-                <td><button class="btn btn-primary" href="#">Add new subject</button></td>
+                <td>
+                    <a type="button" class="btn btn-primary" href="{{route('subjects.create')}}">
+                        Add new subject
+                    </a>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>

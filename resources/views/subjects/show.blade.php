@@ -4,8 +4,16 @@
         <div class="jumbotron">
             <div class="d-flex ">
               <h1 class="display-4 mr-auto">Subject details:</h1>
-              <i class="fas fa-edit fa-4x mr-3" style="color: orange;" data-toggle="tooltip" data-placement="top" title="Edit Subject"></i>
-              <i class="fas fa-trash-alt fa-4x" style="color: red;" data-toggle="tooltip" data-placement="top" title="Delete Subject"></i>
+              <a href="{{route('subjects.edit',['subject'=>$subject])}}" class="pt-1">
+                <i class="fas fa-edit fa-4x mr-3" style="color: orange;" data-toggle="tooltip" data-placement="top" title="Edit Subject"></i>
+              </a>
+              <form action="{{route('subjects.destroy',['subject'=>$subject])}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn" style="background-color:transparent">
+                <i class="fas fa-trash-alt fa-4x" style="color: red;" data-toggle="tooltip" data-placement="top" title="Delete Subject"></i>
+                </button>
+              </form>
             </div>
             <hr class="my-2">
             <table class="table-borderless">
@@ -13,10 +21,10 @@
                     <td style="width: 30%;"><h3>Name:</h3></td> <td><h3>{{$subject->name}}</h3></td>
                 </tr>
                 <tr>
-                    <td style="width: 30%;"><h3>Description:</h3></td>
-                    <td style="width: 70%;">
+                    <td valign="top" style="width: 30%;"><h3>Description:</h3></td>
+                    <td valign="top" style="width: 70%;">
                         <div>
-                            <p class="lead text-justify pt-5">
+                            <p class="lead text-justify" style="font-size: 24px;">
                             {{$subject->description}}
                             </p>
                         </div>

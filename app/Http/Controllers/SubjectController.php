@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SubjectFormRequest;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('subjects.create');
     }
 
     /**
@@ -36,9 +37,12 @@ class SubjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubjectFormRequest $request)
     {
-        //
+        $validated_data = $request->validated();
+        $s = Subject::create($validated_data);
+        $s->save();
+        return redirect()->route('subjects.index');
     }
 
     /**
@@ -62,7 +66,9 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
-        //
+        return view('subjects.edit',[
+            'subject' => $subject
+        ]);
     }
 
     /**
@@ -72,9 +78,15 @@ class SubjectController extends Controller
      * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subject $subject)
+    public function update(SubjectFormRequest $request, Subject $subject)
     {
-        //
+        $validated_data = $request->validated();
+        $s = $subject;
+        $s->update($validated_data);
+        $s->save();
+        return redirect()->route('subjects.show',[
+            'subject' => $subject
+        ]);
     }
 
     /**
@@ -85,6 +97,9 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        //
+        $s = $subject;
+        $s->delete();
+        $s->save();
+        return redirect()->route('subjects.index');
     }
 }
