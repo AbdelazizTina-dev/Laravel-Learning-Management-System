@@ -46,7 +46,9 @@
             <hr class="my-2">
             <div class="d-flex">
                 <h3 class="mr-auto" style="font-weight: bold;">Tasks List:</h3>
-                <i class="far fa-plus-square fa-2x" style="color: green;" data-toggle="tooltip" data-placement="top" title="Add new task"></i>
+                <a href="{{route('subjects.tasks.create',['subject'=>$subject])}}">
+                    <i class="far fa-plus-square fa-2x" style="color: green;" data-toggle="tooltip" data-placement="top" title="Add new task"></i>
+                </a>
             </div>
             <table class="table table-xl table-hover" style="width: 100%;">
                 <thead>
@@ -57,21 +59,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td><a href="#">Attributed Grammers</a></td>
-                    <td>1</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td><a href="#">Opertional Semantics</a></td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td><a href="#">Denontianal Semantics</a></td>
-                    <td>8</td>
-                  </tr>
+                  @foreach ($subject->tasks as $task)
+                    <tr>
+                        <th scope="row">{{$task->id}}</th>
+                        <td><a href="{{route('tasks.show',['task'=>$task])}}">{{$task->name}}</a></td>
+                        <td>{{$task->points}}</td>
+                    </tr>
+                  @endforeach
                 </tbody>
               </table>
             <hr class="my-2">
