@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Solution;
 use App\Models\Subject;
 use App\Models\Task;
 use Carbon\Factory;
@@ -18,6 +19,6 @@ class SubjectSeeder extends Seeder
     public function run()
     {
         DB::table('subjects')->delete();
-        Subject::factory()->count(10)->has(Task::factory()->count(3))->create();
+        Subject::factory()->count(10)->has(Task::factory()->count(3)->has(Solution::factory()->count(4)))->create();
     }
 }

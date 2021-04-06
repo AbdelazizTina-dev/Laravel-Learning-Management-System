@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TaskFormRequest;
-use App\Models\Subject;
-use App\Models\Task;
+use App\Models\Solution;
 use Illuminate\Http\Request;
 
-class TaskController extends Controller
+class SolutionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,9 +22,9 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Subject $subject)
+    public function create()
     {
-        return view('tasks.create',['subject'=>$subject]);
+        //
     }
 
     /**
@@ -35,57 +33,57 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TaskFormRequest $request,Subject $subject)
+    public function store(Request $request)
     {
-        $validated_data = $request->validated();
-        $subject->tasks()->create($validated_data);
-        return redirect()->route('subjects.show',['subject'=>$subject]);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Task  $task
+     * @param  \App\Models\Solution  $solution
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show(Solution $solution)
     {
-        return view('tasks.show',['task'=>$task]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Task  $task
+     * @param  \App\Models\Solution  $solution
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit(Solution $solution)
     {
-        return view('tasks.edit',['task'=>$task]);
+        return view('solutions.edit',['solution'=>$solution]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Task  $task
+     * @param  \App\Models\Solution  $solution
      * @return \Illuminate\Http\Response
      */
-    public function update(TaskFormRequest $request, Task $task)
+    public function update(Request $request, Solution $solution)
     {
-        $validated_data = $request->validated();
-        $task->update($validated_data);
-        $task->save();
-        return redirect()->route('tasks.show',['task'=>$task]);
+        $validated_data = $request->validate([
+            'earned_points' => "required|numeric|between:0,10"
+        ]);
+        $solution->earned_points = $validated_data['earned_points'];
+        $solution->save();
+        return redirect()->route('tasks.show',['task'=>$solution->task]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Task  $task
+     * @param  \App\Models\Solution  $solution
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy(Solution $solution)
     {
         //
     }

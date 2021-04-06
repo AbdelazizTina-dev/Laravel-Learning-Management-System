@@ -4,29 +4,31 @@
         <div class="jumbotron">
             <div class="d-flex ">
               <h1 class="display-4 mr-auto">Task details:</h1>
-              <i class="fas fa-edit fa-4x mr-3" style="color: orange;" data-toggle="tooltip" data-placement="top" title="Edit Task"></i>
+              <a href="{{route('tasks.edit',['task'=>$task])}}">
+                <i class="fas fa-edit fa-4x mr-3" style="color: orange;" data-toggle="tooltip" data-placement="top" title="Edit Task"></i>
+              </a>
             </div>
             <hr class="my-2">
             <table class="table-borderless">
                 <tr>
-                    <td><h3>Name:</h3></td> <td><h3>{{$task->name}}</h3></td>
+                    <td class="mr-3"><h3>Name:</h3></td> <td><h3>{{$task->name}}</h3></td>
                 </tr>
                 <tr>
-                    <td valign="top"><h3>Description:</h3></td>
-                    <td valign="top">
-                        <p class="lead text-justify" style="font-size: 24px;">
+                    <td class="mr-3" valign="top" style="width: 50%;"><h3>Description:</h3></td>
+                    <td style="width: 50%;" valign="top">
+                        <p class="lead" style="font-size: 24px;">
                             {{$task->description}}
                         </p>
                     </td>
                 </tr>
                 <tr>
-                     <td style="width: 50%;"><h3>Points:</h3></td> <td><h3>{{$task->points}}</h3></td>
+                     <td class="mr-3" style="width: 50%;"><h3>Points:</h3></td> <td><h3>{{$task->points}}</h3></td>
                 </tr>
                 <tr>
-                     <td style="width: 50%;"><h3>Number of submitted solutions:</h3></td> <td><h3>static</h3></td>
+                     <td class="mr-3" style="width: 50%;"><h3>Number of submitted solutions:</h3></td> <td><h3>static</h3></td>
                 </tr>
                 <tr>
-                     <td style="width: 50%;"><h3>Number of evaluated solutions:</h3></td> <td><h3>static</h3></td>
+                     <td class="mr-3" style="width: 50%;"><h3>Number of evaluated solutions:</h3></td> <td><h3>static</h3></td>
                 </tr>
             </table>
             <hr class="my-2">
@@ -46,33 +48,27 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>02/03/2021</td>
-                    <td>Tina Abdelaziz</td>
-                    <td>tinaabdelaziz8@gmail.com</td>
-                    <td>/</td>
-                    <td>/</td>
-                    <td><button class="btn btn-primary">Evaluate</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>22/03/2021</td>
-                    <td>Random Dude</td>
-                    <td>darude@gmail.com</td>
-                    <td>/</td>
-                    <td>/</td>
-                    <td><button class="btn btn-primary">Evaluate</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>02/03/2021</td>
-                    <td>Broskie Joe</td>
-                    <td>joemama@gmail.com</td>
-                    <td>/</td>
-                    <td>/</td>
-                    <td><button class="btn btn-primary">Evaluate</button></td>
-                  </tr>
+                    @foreach ($task->solutions as $solution)
+                        <tr>
+                            <th scope="row">{{$solution->id}}</th>
+                            <td>{{$solution->created_at}}</td>
+                            <td>Static Info</td>
+                            <td>Static Info</td>
+                            @if ($solution->earned_points == null)
+                            <td>/</td>
+                            <td>/</td>
+                            <td>
+                                <a href="{{route('solutions.edit',['solution'=>$solution])}}">
+                                    <button class="btn btn-primary">Evaluate</button>
+                                </a>
+                            </td>
+                            @else
+                            <td>{{$solution->earned_points}}</td>
+                            <td>{{$solution->updated_at}}</td>
+                            <td><button class="btn btn-primary invisible">Evaluate</button></td>
+                            @endif
+                        </tr>
+                    @endforeach
                 </tbody>
               </table>
         </div>

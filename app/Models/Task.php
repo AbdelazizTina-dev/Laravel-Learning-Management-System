@@ -15,4 +15,9 @@ class Task extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+
+    public function solutions()
+    {
+        return $this->hasMany(Solution::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\SolutionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,4 @@ Route::get('/', function () {
 
 Route::resource('subjects', SubjectController::class);
 Route::resource('subjects.tasks', TaskController::class)->shallow();
+Route::resource('tasks.solutions', SolutionController::class)->shallow();
