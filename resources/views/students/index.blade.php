@@ -19,17 +19,25 @@
             <tbody>
               @foreach ($subjects as $subject)
               <tr>
-                <th scope="row">{{$subject->id}}</th>
-                <td><a href="#">{{$subject->name}}</a></td>
-                <td>{{$subject->description}}</td>
-                <td>{{$subject->code}}</td>
-                <td>{{$subject->credit_value}}</td>
-                <td>{{$subject->user->name}}</td>
-                <td><button class="btn btn-warning btn-sm">Leave</button></td>
+                <th scope="row" style="width: 2%">{{$subject->id}}</th>
+                <td style="width: 20%"><a href="#">{{$subject->name}}</a></td>
+                <td style="width: 30%">{{$subject->description}}</td>
+                <td style="width: 15%">{{$subject->code}}</td>
+                <td style="width: 13%">{{$subject->credit_value}}</td>
+                <td style="width: 15%">{{$subject->user->name}}</td>
+                <td style="width: 5%">
+                    <a href="{{route('students.leave',['subject'=>$subject])}}">
+                        <button class="btn btn-warning btn-sm">Leave</button>
+                    </a>
+                </td>
               </tr>
               @endforeach
                 <td></td>
-                <td><button class="btn btn-primary" href="#">Take new subject</button></td>
+                <td>
+                    <a href="{{route('students.take')}}">
+                    <button class="btn btn-primary">Take new subject</button>
+                    </a>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>

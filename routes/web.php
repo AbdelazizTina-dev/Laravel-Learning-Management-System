@@ -32,5 +32,6 @@ Route::get('/dashboard', function () {
 Route::get('/student_subjects/take_subject', [StudentController::class, 'take'])->name('students.take');
 Route::get('/student_subjects/{subject}', [StudentController::class, 'register'])->name('students.register');
 Route::get('/student_subjects', [StudentController::class, 'index'])->name('students.index');
+Route::get('/student_subjects/{subject}/leave', [StudentController::class, 'leave'])->name('students.leave');
 
 require __DIR__.'/auth.php';

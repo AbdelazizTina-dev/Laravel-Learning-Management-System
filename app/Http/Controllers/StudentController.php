@@ -24,6 +24,14 @@ class StudentController extends Controller
         ]);
     }
 
+    public function leave(Subject $subject)
+    {
+        $s = $subject;
+        $s->users()->detach(Auth::id());
+        $s->save();
+        return redirect()->route('students.index');
+    }
+
     public function register(Subject $subject)
     {
         $s = $subject;
