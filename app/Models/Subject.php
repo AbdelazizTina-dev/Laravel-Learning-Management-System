@@ -11,7 +11,17 @@ class Subject extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['name','description','code','credit_value'];
+    protected $fillable = ['name','description','code','credit_value','user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 
     public function tasks()
     {

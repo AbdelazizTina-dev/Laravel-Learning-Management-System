@@ -25,7 +25,8 @@ class SubjectFactory extends Factory
             'name' => $this->faker->word(),
             'description' => $this->faker->optional()->paragraph(),
             'code' => $this->faker->regexify('IK-[A-Z]{3}[0-9]{4}'),
-            'credit_value' => $this->faker->numberBetween(1,5)
+            'credit_value' => $this->faker->numberBetween(1,5),
+            'user_id' => rand(1,2)
         ];
     }
 }

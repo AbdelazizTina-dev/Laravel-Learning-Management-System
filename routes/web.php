@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\SolutionController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TaskController;
-use App\Http\Controllers\SolutionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('teacher_menu');
+    return view('main_menu');
 });
 
-Route::resource('subjects', SubjectController::class);
-Route::resource('subjects.tasks', TaskController::class)->shallow();
-Route::resource('tasks.solutions', SolutionController::class)->shallow();
+Route::resource('subjects', SubjectController::class)->middleware(['auth']);
+Route::resource('subjects.tasks', TaskController::class)->shallow()->middleware(['auth']);
+Route::resource('tasks.solutions', SolutionController::class)->shallow()->middleware(['auth']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/student_subjects/take_subject', [StudentController::class, 'take'])->name('students.take');
+Route::get('/student_subjects/{subject}', [StudentController::class, 'register'])->name('students.register');
+Route::get('/student_subjects', [StudentController::class, 'index'])->name('students.index');
+
+require __DIR__.'/auth.php';

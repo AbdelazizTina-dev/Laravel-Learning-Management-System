@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SubjectFormRequest;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
@@ -15,9 +16,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::all();
         return view('subjects.index',[
-            'subjects' => $subjects
+            'subjects' => Auth::user()->teacher_subjects
         ]);
     }
 
@@ -40,6 +40,7 @@ class SubjectController extends Controller
     public function store(SubjectFormRequest $request)
     {
         $validated_data = $request->validated();
+        $validated_data['user_id'] = Auth::id();
         $s = Subject::create($validated_data);
         $s->save();
         return redirect()->route('subjects.index');

@@ -19,8 +19,22 @@ class CreateSubjectsTable extends Migration
             $table->string('description')->nullable();
             $table->string('code');
             $table->unsignedInteger('credit_value');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+
+        Schema::create('subject_user', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('subject_id');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamps();
+
+            $table->unique(['subject_id', 'user_id']);
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+          });
     }
 
     /**

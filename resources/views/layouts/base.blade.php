@@ -23,11 +23,19 @@
               </ul>
           </div>
 
-
-          <button type="button" class="btn btn-danger navbar-btn mx-1" href="#">Login</button>
-
-
-          <button type="button" class="btn btn-danger navbar-btn mx-1" href="#">Register</button>
+          @guest
+                <a  href="{{ route('login') }}">
+                    <button type="button" class="btn btn-danger navbar-btn mx-1">Login</button>
+                </a>
+                <a  href="{{ route('register') }}">
+                    <button type="button" class="btn btn-danger navbar-btn mx-1">Register</button>
+                </a>
+          @else
+                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-danger navbar-btn mx-1">Logout</button>
+                </form>
+          @endguest
     </nav>
 
     @yield('content')

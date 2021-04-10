@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Subject;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class LmsSeeder extends Seeder
 {
@@ -14,6 +15,9 @@ class LmsSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(LaratrustSeeder::class);
+        $this->call(TeacherSeeder::class);
+        //$this->call(StudentSeeder::class);
         $this->call(SubjectSeeder::class);
     }
 }
