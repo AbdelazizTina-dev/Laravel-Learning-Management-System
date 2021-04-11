@@ -33,5 +33,6 @@ Route::get('/student_subjects/take_subject', [StudentController::class, 'take'])
 Route::get('/student_subjects/{subject}', [StudentController::class, 'register'])->name('students.register');
 Route::get('/student_subjects', [StudentController::class, 'index'])->name('students.index');
 Route::get('/student_subjects/{subject}/leave', [StudentController::class, 'leave'])->name('students.leave');
+Route::get('/student_subjects/{subject}/show', [StudentController::class, 'show'])->name('students.show');
 
 require __DIR__.'/auth.php';

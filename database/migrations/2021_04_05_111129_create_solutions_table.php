@@ -18,6 +18,9 @@ class CreateSolutionsTable extends Migration
             $table->unsignedBigInteger('task_id');
             $table->string('answer');
             $table->string('earned_points')->nullable();
+            $table->string('student_name');
+            $table->string('student_email');
+            $table->boolean('evaluated');
             $table->timestamps();
 
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');

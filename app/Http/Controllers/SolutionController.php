@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Solution;
+use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SolutionController extends Controller
 {
@@ -22,9 +24,11 @@ class SolutionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Task $task)
     {
-        //
+        return view('students.submit',[
+            'task' => $task
+        ]);
     }
 
     /**
@@ -33,9 +37,16 @@ class SolutionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Task $task)
     {
-        //
+        $validated_data = $request->validate([
+            'answer' => "required"
+        ]);
+        $validated_data['student_name'] = Auth::user()->name;
+        $validated_data['student_email'] = Auth::user()->email;
+        $validated_data['evaluated'] = false;
+        $task->solutions()->create($validated_data);
+        return view('students.show',['subject'=>$task->subject]);
     }
 
     /**

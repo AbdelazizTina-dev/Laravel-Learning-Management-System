@@ -20,7 +20,7 @@
               @foreach ($subjects as $subject)
               <tr>
                 <th scope="row" style="width: 2%">{{$subject->id}}</th>
-                <td style="width: 20%"><a href="#">{{$subject->name}}</a></td>
+                <td style="width: 20%"><a href="{{route('students.show',['subject'=>$subject])}}">{{$subject->name}}</a></td>
                 <td style="width: 30%">{{$subject->description}}</td>
                 <td style="width: 15%">{{$subject->code}}</td>
                 <td style="width: 13%">{{$subject->credit_value}}</td>
