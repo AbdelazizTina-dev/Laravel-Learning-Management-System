@@ -80,10 +80,12 @@ class SolutionController extends Controller
      */
     public function update(Request $request, Solution $solution)
     {
+        $task = $solution->task;
         $validated_data = $request->validate([
-            'earned_points' => "required|numeric|between:0,10"
+            'earned_points' => "required|numeric|between:0,$task->points"
         ]);
         $solution->earned_points = $validated_data['earned_points'];
+        $solution->evaluated = true;
         $solution->save();
         return redirect()->route('tasks.show',['task'=>$solution->task]);
     }

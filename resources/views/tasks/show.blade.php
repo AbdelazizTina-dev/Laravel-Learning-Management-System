@@ -25,10 +25,10 @@
                      <td class="mr-3" style="width: 50%;"><h3>Points:</h3></td> <td><h3>{{$task->points}}</h3></td>
                 </tr>
                 <tr>
-                     <td class="mr-3" style="width: 50%;"><h3>Number of submitted solutions:</h3></td> <td><h3>static</h3></td>
+                     <td class="mr-3" style="width: 50%;"><h3>Number of submitted solutions:</h3></td> <td><h3>{{$task->solutions()->count()}}</h3></td>
                 </tr>
                 <tr>
-                     <td class="mr-3" style="width: 50%;"><h3>Number of evaluated solutions:</h3></td> <td><h3>static</h3></td>
+                     <td class="mr-3" style="width: 50%;"><h3>Number of evaluated solutions:</h3></td> <td><h3>{{$task->solutions()->where('evaluated',true)->count()}}</h3></td>
                 </tr>
             </table>
             <hr class="my-2">
@@ -52,21 +52,22 @@
                         <tr>
                             <th scope="row">{{$solution->id}}</th>
                             <td>{{$solution->created_at}}</td>
-                            <td>Static Info</td>
-                            <td>Static Info</td>
+                            <td>{{$solution->student_name}}</td>
+                            <td>{{$solution->student_email}}</td>
                             @if ($solution->earned_points == null)
-                            <td>/</td>
-                            <td>/</td>
+                                <td>/</td>
+                                <td>/</td>
+                            @else
+                                <td>{{$solution->earned_points}}</td>
+                                <td>{{$solution->updated_at}}</td>
+                            @endif
                             <td>
                                 <a href="{{route('solutions.edit',['solution'=>$solution])}}">
-                                    <button class="btn btn-primary">Evaluate</button>
+                                    <button class="btn btn-primary" @if ($solution->evaluated)
+                                        disabled
+                                    @endif>Evaluate</button>
                                 </a>
                             </td>
-                            @else
-                            <td>{{$solution->earned_points}}</td>
-                            <td>{{$solution->updated_at}}</td>
-                            <td><button class="btn btn-primary invisible">Evaluate</button></td>
-                            @endif
                         </tr>
                     @endforeach
                 </tbody>

@@ -15,7 +15,7 @@
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" style="width: 100%; height: 40vh; object-fit: contain;" src="https://hackernoon.com/hn-images/1*sxezHl8zFZiZYTg9kc81JQ.png" alt="Card image cap">
             <div class="card-body">
-              <a href="#" class="btn btn-primary">Add New Subject</a>
+              <a href="{{route('subjects.create')}}" class="btn btn-primary">Add New Subject</a>
             </div>
         </div>
         </div>

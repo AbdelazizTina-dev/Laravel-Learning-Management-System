@@ -11,29 +11,29 @@
     <title>Learning Management System</title>
   </head>
   <body>
-      <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: rgb(9, 143, 16);">
-          <a class="navbar-brand" href="#">Learning Management System</a>
+      <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:coral;">
+          <a class="navbar-brand" href="{{route('main')}}">Learning Management System</a>
           <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
               aria-expanded="false" aria-label="Toggle navigation"></button>
           <div class="collapse navbar-collapse" id="collapsibleNavId">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                   <li class="nav-item active">
-                      <a class="nav-link" href="contact.html">Contact</a>
+                      <a class="nav-link" href="{{route('contact')}}">Contact</a>
                   </li>
               </ul>
           </div>
 
           @guest
                 <a  href="{{ route('login') }}">
-                    <button type="button" class="btn btn-danger navbar-btn mx-1">Login</button>
+                    <button type="button" class="btn btn-info navbar-btn mx-1">Login</button>
                 </a>
                 <a  href="{{ route('register') }}">
-                    <button type="button" class="btn btn-danger navbar-btn mx-1">Register</button>
+                    <button type="button" class="btn btn-info navbar-btn mx-1">Register</button>
                 </a>
           @else
                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-danger navbar-btn mx-1">Logout</button>
+                    <button type="submit" class="btn btn-info navbar-btn mx-1">Logout</button>
                 </form>
           @endguest
     </nav>

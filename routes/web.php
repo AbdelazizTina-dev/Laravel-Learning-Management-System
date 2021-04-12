@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('main_menu');
-});
+})->name('main');
 
 Route::resource('subjects', SubjectController::class)->middleware(['auth']);
 Route::resource('subjects.tasks', TaskController::class)->shallow()->middleware(['auth']);
@@ -29,10 +29,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/student_subjects/take_subject', [StudentController::class, 'take'])->name('students.take');
-Route::get('/student_subjects/{subject}', [StudentController::class, 'register'])->name('students.register');
-Route::get('/student_subjects', [StudentController::class, 'index'])->name('students.index');
-Route::get('/student_subjects/{subject}/leave', [StudentController::class, 'leave'])->name('students.leave');
-Route::get('/student_subjects/{subject}/show', [StudentController::class, 'show'])->name('students.show');
+Route::get('/student_subjects/take_subject', [StudentController::class, 'take'])->middleware(['auth'])->name('students.take');
+Route::get('/student_subjects/{subject}', [StudentController::class, 'register'])->middleware(['auth'])->name('students.register');
+Route::get('/student_subjects', [StudentController::class, 'index'])->middleware(['auth'])->name('students.index');
+Route::get('/student_subjects/{subject}/leave', [StudentController::class, 'leave'])->middleware(['auth'])->name('students.leave');
+Route::get('/student_subjects/{subject}/show', [StudentController::class, 'show'])->middleware(['auth'])->name('students.show');
+
+Route::view('/contact', 'contact')->name('contact');
 
 require __DIR__.'/auth.php';

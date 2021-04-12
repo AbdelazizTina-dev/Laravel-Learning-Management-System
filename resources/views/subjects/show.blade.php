@@ -79,36 +79,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Tina Abdelaziz</td>
-                    <td>tinaabdelaziz8@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Tina Abdelaziz</td>
-                    <td>tinaabdelaziz8@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Tina Abdelaziz</td>
-                    <td>tinaabdelaziz8@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Tina Abdelaziz</td>
-                    <td>tinaabdelaziz8@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Tina Abdelaziz</td>
-                    <td>tinaabdelaziz8@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Tina Abdelaziz</td>
-                    <td>tinaabdelaziz8@gmail.com</td>
-                  </tr>
+                    @foreach ($subject->users as $student)
+                        <tr>
+                            <th scope="row">{{$student->id}}</th>
+                            <td>{{$student->name}}</td>
+                            <td>{{$student->email}}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
               </table>
 
