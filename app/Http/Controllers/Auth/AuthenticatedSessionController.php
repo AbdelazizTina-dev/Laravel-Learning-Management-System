@@ -33,8 +33,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if ($request->user()->hasRole('teacher')) return view('teacher_menu');
-        if ($request->user()->hasRole('student')) return view('students_menu');
+        if ($request->user()->hasRole('teacher')) return redirect()->route('teacher_post_login');
+        if ($request->user()->hasRole('student')) return redirect()->route('student_post_login');
 
     }
 

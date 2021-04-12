@@ -36,5 +36,7 @@ Route::get('/student_subjects/{subject}/leave', [StudentController::class, 'leav
 Route::get('/student_subjects/{subject}/show', [StudentController::class, 'show'])->middleware(['auth'])->name('students.show');
 
 Route::view('/contact', 'contact')->name('contact');
+Route::view('/teacher_menu', 'teacher_menu')->name('teacher_post_login');
+Route::view('/student_menu', 'students_menu')->name('student_post_login');
 
 require __DIR__.'/auth.php';
