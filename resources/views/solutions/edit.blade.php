@@ -26,7 +26,7 @@
             </div>
             <div class="form-group row">
                 <label for="earned_points" class="col-sm-2 col-form-label col-form-label-lg">Points:</label>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                     <input name="earned_points" type="text" class="form-control form-control-lg @error('earned_points') is-invalid @enderror" id="earned_points" placeholder="">
                     @error('earned_points')
                         <div>

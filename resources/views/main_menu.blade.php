@@ -11,17 +11,24 @@
     <title>Learning Management System</title>
 
     <style>
-        html {
-            height: 100%;
-            margin: 0;
+        .vl {
+          border-left: 6px solid black;
+          height: 300px;
+          position: absolute;
+          left: 50%;
+          margin-left: -3px;
+          margin-top: 300px;
+          top: 0;
         }
-        body {
-            min-height: 100%;
-            margin: 0;
+        h1 {
+            font-size: 48px;
+            color:white;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
         }
     </style>
   </head>
-  <body>
+  <body background="https://wallpaperaccess.com/full/1912160.jpg" style="background-size: cover;">
       <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:coral;">
           <a class="navbar-brand" href="{{route('main')}}">Learning Management System</a>
           <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
@@ -48,6 +55,35 @@
                 </form>
           @endguest
     </nav>
+
+    <div class="d-flex justify-content-center mt-5">
+        <h1 class="display-4">Welcome to Abdelaziz's LMS!!</h1>
+    </div>
+    <div class="d-flex justify-content-center" style="margin-top: 50px;">
+        <div class="container" style="margin-left: 250px">
+            <h1>Teachers are able to:</h1>
+            <h1>
+            <ul>
+                <li>Create,Edit and Delete Subjects</li>
+                <li>Create new Tasks</li>
+                <li>Observe and Evaluate Solutions</li>
+                <li>and more ...</li>
+            </ul>
+            <h1>
+        </div>
+
+        <div class="container" style="margin-left: 150px" >
+            <h1>Students are able to:</h1>
+            <h1>
+            <ul>
+                <li>Take Subjects</li>
+                <li>Leave Subjects</li>
+                <li>Submit Tasks' solutions</li>
+                <li>and more ...</li>
+            </ul>
+            <h1>
+        </div>
+    </div>
 
 </body>
 
