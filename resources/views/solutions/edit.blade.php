@@ -2,7 +2,7 @@
 @section('content')
     <div class="container mt-5">
         <h1 class="mb-5">
-            Evaluate solution:
+            Add new diary entry:
         </h1>
 
         <form action="{{route('solutions.update',['solution'=>$solution])}}" method="POST">

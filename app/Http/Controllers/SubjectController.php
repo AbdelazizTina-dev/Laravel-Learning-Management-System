@@ -61,6 +61,7 @@ class SubjectController extends Controller
      */
     public function show(Subject $subject)
     {
+        dd($subject);
         return view('subjects.show',[
             'subject' => $subject
         ]);
